@@ -1,93 +1,62 @@
-# Ex_1
+# Lecture 01 exercises
 
+## Exercise 01-1
 
+### Install Node.js and Postman
 
-## Getting started
+Before we can start building great APIs, we need to make sure everything is up and running.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+1. Go to https://nodejs.org/en/ and grap the latest Long Term Support (LTS) version of Node.js for your operating system.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+Fire up your favorite terminal (Bash, Z shell, PowerShell, Command Prompt, etc.) and make sure the versions checks out with the following commands:
 
-## Add your files
+- `node -v` (should print at least `v20.11.0`)
+- `npm -v` (should print something like `9.9.2`)
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+If everything checks out, we are ready to rumble!
 
-```
-cd existing_repo
-git remote add origin https://gitlab.au.dk/wao-exercises1/ex_1.git
-git branch -M main
-git push -uf origin main
-```
+Since the focus of this course will be to build APIs it is a good idea to have some sort of tool to test the endpoints we are building. We recommend Postman, get it @ https://www.postman.com/.
 
-## Integrate with your tools
+## Exercise 01-2
 
-- [ ] [Set up project integrations](https://gitlab.au.dk/wao-exercises1/ex_1/-/settings/integrations)
+### Hello, Node.js
 
-## Collaborate with your team
+1. Create a new directory for your application
+2. Create a main file for your application (usually, the main file is called `index.js`, but it can be anything)
+3. Run `npm init`<sup>(<a href="https://docs.npmjs.com/cli/v9/commands/npm-init">docs</a>)</sup> in the directory to create a `package.json` file
+4. Open `index.js` and copy/paste the code from `examples/hello-node/hello-node.js`
+5. Run the application with `node index.js`
+6. Add another endpoint at `/ping`, which responds with `pong`
+7. Test it out using Postman
+8. Write comments in your own words in the file explaining each statement and/or function(s)
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+## Exercise 01-3
 
-## Test and Deploy
+### Set up TypeScript and local debugging  
 
-Use the built-in continuous integration in GitLab.
+Follow this guide to use Typescript together with Node: https://betterstack.com/community/guides/scaling-nodejs/nodejs-typescript/
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+## Exercise 01-4
 
-***
+### Convert project 01-2 to use TypeScript and Nodemon
 
-# Editing this README
+Were you getting tired of constantly restarting your application manually when you did Exercise 01-2?
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+Install Nodemon as shown in this guide in the section "Watching file changes": https://blog.logrocket.com/how-to-set-up-node-typescript-express/#running-typescript-node-ts-node
 
-## Suggestions for a good README
+## Exercise 01-5
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+### Building your first Express API
 
-## Name
-Choose a self-explaining name for your project.
+Now that we have tinkered with the basic building blocks in Node.js, it is time to build something a bit more complex. We will be introducing Express.js<sup>(<a href="http://expressjs.com/">docs</a>)</sup> to help increase our productivity.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+1. Follow steps 1-3 from Exercise 01-2 to create a fresh package (You can add `nodemon` as well, if you feel like it)
+2. Add Express.js to the package (run `npm i express` in the package root directory)
+3. Since Express does not include type definitions, we'll have to add them manually with `npm i --save @types/express` 
+4. Inspect the in `examples/hello-node/http-methods-and-routes.js` and implement the API with Express.js
+    - An endpoint at `/` with `GET` and `POST` that returns data with `Content-Type: text/plain`
+    - An endpoint at `/json` with `GET` and `POST` that returns data with `Content-Type: application/json`
+    - There should be a separate `Router` for each endpoint (see `examples/multi-router`)
+5. Write down the main differences between the vanilla Node.js and Express.js implementation.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+_Hints: Problems parsing HTTP bodies? Check out https://github.com/expressjs/body-parser for more information_
